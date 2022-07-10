@@ -91,21 +91,95 @@
 </head>
 
 <body>
-    <div class="container mt-5 mb-5 pb-5">
-        <hr>
+    <header class="container-fluid my-4">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-department="IT" href="#">IT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-department="CE" href="#">CE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-department="E&TC" href="#">E&TC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-department="CIVIL" href="#">Civil</a>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container mt-3 mb-5 pb-5" id="syllabusList">
         <a href="./media/Syllabus-SE-IT.pdf">
-            <button type="button" class="btnOutline">Information Technology <br> 2<sup>nd</sup> Year - (S.E)</button>
+            <button type="button" class="btnOutline">Information Technology <br> <b>2<sup>nd</sup> Year</b> -
+                (S.E)</button>
         </a>
         <hr>
         <a href="./media/Syllabus-TE-IT.pdf">
-            <button type="button" class="btnOutline">Information Technology <br> 3<sup>rd</sup> Year - (T.E)</button>
+            <button type="button" class="btnOutline">Information Technology <br> <b>3<sup>rd</sup> Year</b> -
+                (T.E)</button>
         </a>
         <hr>
         <a href="./media/Syllabus-BE-IT.pdf">
-            <button type="button" class="btnOutline">Information Technology <br> 4<sup>th</sup> Year - (B.E)</button>
+            <button type="button" class="btnOutline">Information Technology <br> <b>4<sup>th</sup> Year</b> -
+                (B.E)</button>
         </a>
         <hr>
     </div>
+
+    <script>
+        document.querySelectorAll(".nav-link").forEach((tab, key) => {
+            tab.addEventListener("click", (e) => {
+                document.querySelectorAll(".nav-link").forEach((tab, key) => {
+                    tab.classList.remove("active")
+                })
+                e.target.classList.add("active")
+                displaySyllabus(e.target.getAttribute("data-department"))
+            })
+        })
+
+        function displaySyllabus(department) {
+            let data = {
+                IT: {
+                    name: "Information Technology",
+                    syllabus: [
+                        "./media/Syllabus-SE-IT.pdf",
+                        "./media/Syllabus-TE-IT.pdf",
+                        "./media/Syllabus-BE-IT.pdf"
+                    ]
+                },
+                CE: {
+                    name: "Computer Engineering",
+                    syllabus: [
+                        "./media/Syllabus-SE-CE.pdf",
+                        "./media/Syllabus-TE-CE.pdf",
+                        "./media/Syllabus-BE-CE.pdf"
+                    ]
+                },
+                'E&TC': {
+                    name: "Electronics And Telecommunication",
+                    syllabus: [
+                        "./media/Syllabus-SE-E&TC.pdf",
+                        "./media/Syllabus-TE-E&TC.pdf",
+                        "./media/Syllabus-BE-E&TC.pdf"
+                    ]
+                },
+                CIVIL: {
+                    name: "Civil",
+                    syllabus: [
+                        "./media/Syllabus-SE-CIVIL.pdf",
+                        "./media/Syllabus-TE-CIVIL.pdf",
+                        "./media/Syllabus-BE-CIVIL.pdf"
+                    ]
+                },
+            }
+
+            document.querySelectorAll("#syllabusList a").forEach((a, key) => {
+                a.href = data[department]['syllabus'][key];
+                let button = a.children[0];
+                button.innerHTML = `${data[department]["name"]}<br> <b>${key + 2}<sup>${((key + 2) == 2) ? 'nd' : (((key + 2) == 3) ? 'rd' : 'th')}</sup> Year</b> - (S.E)`;
+            })
+        }
+    </script>
 
     <script>
         "use strict"
