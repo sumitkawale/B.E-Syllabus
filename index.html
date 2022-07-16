@@ -176,7 +176,7 @@
             document.querySelectorAll("#syllabusList a").forEach((a, key) => {
                 a.href = data[department]['syllabus'][key];
                 let button = a.children[0];
-                button.innerHTML = `${data[department]["name"]}<br> <b>${key + 2}<sup>${((key + 2) == 2) ? 'nd' : (((key + 2) == 3) ? 'rd' : 'th')}</sup> Year</b> - (S.E)`;
+                button.innerHTML = `${data[department]["name"]}<br> <b>${key + 2}<sup>${((key + 2) == 2) ? 'nd' : (((key + 2) == 3) ? 'rd' : 'th')}</sup> Year</b> - (${((key + 2) == 2) ? 'S.E' : (((key + 2) == 3) ? 'T.E' : 'B.E')})`;
             })
         }
     </script>
